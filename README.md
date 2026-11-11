@@ -1,41 +1,54 @@
-# RIMC Batch 2026-27 — Landing Page
+# WEDA — RIMC Landing Page
 
-Single-page landing site for the RIMC Batch 2026-27 classroom batch at
-Shiv Shakti Tower, Near Donali Chowk, Dehradun.
+One-page landing site for **WEDA – The Winning Edge Defence Academy**, promoting
+preparation for the **Rashtriya Indian Military College (RIMC) entrance examination**,
+Class VIII entry.
 
-Sub-brand: **The Winning Edge Defence Academy**
+Sibling of the Sainik School / RMS page (`weda-sainik-rms-landing`, branch
+`sainik-rms-2026`) — same design system, same logo, same policy pages.
 
-## Batch details
+## Two actions only
 
-| | |
-| --- | --- |
-| Classes start | 18 September 2026 |
-| Free demo classes | 18 – 30 September 2026 |
-| Timing | 4:00 – 7:00 PM |
-| Days | Monday to Friday |
-| Weekly test | Every Saturday |
-| Valid till | December 2026 |
-| Fee | ₹20,500 (regular ₹25,500) |
+| Button | Goes to |
+|---|---|
+| **Apply for Admission** (nav, hero, final CTA, mobile bar) | WhatsApp, pre-filled |
+| **Enquire about RIMC** (both course cards) | WhatsApp, naming written vs viva |
+| **Register Now** | the Razorpay Payment Page |
 
-## About this repo
+No forms, no backend. Three HTML pages, one stylesheet, images.
 
-`index.html` is the whole site — a single self-contained file. All CSS is
-inline and every image is embedded as a base64 data URI, so the page also
-opens straight from disk or can be emailed as one file. The only external
-request is the Google Fonts stylesheet (Oswald + Poppins).
+## Configure
 
-There is no build step. Edit `index.html` and push; Vercel redeploys on
-every push to `main`.
+Everything editable lives in the `const WEDA = { … }` block near the bottom of
+`index.html`: WhatsApp and phone numbers, the Razorpay Payment Page URL, social
+links, policy page paths and the pre-filled WhatsApp messages.
 
-## Shared contact details
+## Images
 
-Change these together if they ever change:
+| File | Where | Status |
+|---|---|---|
+| `assets/hero-cadets.webp` | Hero | present |
+| `assets/rimc-cadets.webp` | About RIMC | **missing — shows the dark fallback panel** |
+| `assets/col-amardeep.webp` | Video thumbnail | **missing** |
 
-- Phone: `+91 8437001122`
-- WhatsApp: `https://wa.me/917417920356`
-- Address: Shiv Shakti Tower, Near Donali Chowk, Dehradun, Uttarakhand
-- Director: Col Amardeep Singh, SM (Retd)
+Drop a file in and it appears; no code change needed.
 
-## Local preview
+## Facts used on this page
 
-Open `index.html` in a browser. No tooling required.
+Checked against public RIMCEE sources, November 2026:
+
+- Class VIII entry only, at RIMC Dehradun
+- Open to boys and girls
+- Entrance twice a year (June and December exams; January and July terms)
+- Written examination (Mathematics, English, General Knowledge) → viva voce → medical
+- Conducted by the National Testing Agency
+- Feeder institution for the NDA and Indian Naval Academy
+- Seats are few and allotted state and UT-wise
+
+**No seat count is published on the page.** Sources disagree — 25 per term in older
+notices, 35 per term (25 boys, 10 girls) in RIMCEE 2026. Confirm against the current
+official notification before putting a number on the page.
+
+## Deploy
+
+Pushes to branch `rimc-2026` are deployed to the Vercel project `weda-rimc-2026`.

@@ -28,7 +28,7 @@ links, policy page paths and the pre-filled WhatsApp messages.
 | File | Where | Status |
 |---|---|---|
 | `assets/hero-cadets.webp` | Hero | present |
-| `assets/rimc-cadets.webp` | About RIMC | **missing — shows the dark fallback panel** |
+| `assets/rimc-campus.webp` | About RIMC | present — **low-resolution source (515x388)**, replace when a larger one exists |
 | `assets/col-amardeep.webp` | Video thumbnail | **missing** |
 
 Drop a file in and it appears; no code change needed.

@@ -179,8 +179,27 @@ h2 .r{color:var(--red)}
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 
-/* ---------- why ---------- */
+/* ---------- why + video ---------- */
 .why-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:46px;align-items:start}
+.video-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;box-shadow:var(--shadow);position:sticky;top:calc(var(--nav-h) + 20px)}
+.video-thumb{position:relative;display:block;border-radius:var(--r);overflow:hidden;aspect-ratio:16/9;background:linear-gradient(145deg,#17171b,#0c0c0e 60%,#2a0a0e);background-image:var(--img,linear-gradient(145deg,#17171b,#0c0c0e 60%,#2a0a0e));background-size:cover;background-position:center;cursor:pointer}
+.video-thumb::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(12,12,14,.72),transparent 58%);z-index:1}
+.video-thumb .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:66px;height:46px;border-radius:12px;background:var(--red);display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 10px 30px -8px rgba(225,29,46,.9);transition:transform .3s var(--ease),background .3s var(--ease)}
+.video-thumb:hover .play{transform:translate(-50%,-50%) scale(1.09);background:var(--red-hot)}
+.video-thumb .play svg{width:20px;height:20px;color:#fff;margin-left:2px}
+.video-frame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000;z-index:3;opacity:0;transition:opacity .35s var(--ease)}
+.video-frame.ready{opacity:1}
+.v-load{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:38px;height:38px;border:3px solid rgba(255,255,255,.28);border-top-color:#fff;border-radius:50%;animation:vspin .8s linear infinite;z-index:4}
+.v-note{position:absolute;left:0;right:0;bottom:16px;z-index:4;text-align:center;font-family:var(--font-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+@keyframes vspin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.video-thumb.playing .play,.video-thumb.playing .who{display:none}
+.video-thumb .dur{position:absolute;right:11px;bottom:11px;z-index:2;background:rgba(12,12,14,.82);color:#fff;font-family:var(--font-m);font-size:10.5px;letter-spacing:.08em;padding:4px 8px;border-radius:5px}
+.video-thumb .who{position:absolute;left:14px;bottom:12px;z-index:2;color:#fff}
+.video-thumb .who b{display:block;font-family:var(--font-d);font-size:15px;letter-spacing:.02em}
+.video-thumb .who span{font-family:var(--font-m);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+.video-card h3{font-size:clamp(20px,2.4vw,27px);margin:18px 0 9px;line-height:1.04}
+.video-card p{font-size:13.5px;color:var(--gry);line-height:1.55}
+.video-label{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-family:var(--font-m);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:500}
 
 /* ---------- split info (sainik / rms) ---------- */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
@@ -401,7 +420,9 @@ footer ul a:hover{color:var(--red)}
   .hero-cta{order:6}
   .hero-trust{order:7}
   .split.rev .txt{order:0}
-  }
+  .video-card{position:static}
+  .hero-shot{max-width:560px}
+}
 @media (max-width:860px){
   .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
   .grid-3{grid-template-columns:1fr}
@@ -557,8 +578,8 @@ footer ul a:hover{color:var(--red)}
       <div class="aside">// Structure &middot; Mentorship &middot; Discipline</div>
     </div>
     <p class="lede rv" style="margin:-14px 0 28px">Led by experienced faculty and defence veterans since 2019.</p>
-    <div>
-      <div class="grid-3 rv">
+    <div class="why-grid">
+      <div class="grid-2 rv">
         <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-faculty"/></svg></div><div><h3>Experienced Faculty</h3><p>Educators who know these entrance exams and what they demand.</p></div></article>
         <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-discipline"/></svg></div><div><h3>Veteran-Led Leadership</h3><p>Real military values, discipline and leadership in the classroom.</p></div></article>
         <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-mentor"/></svg></div><div><h3>Complete Mentorship</h3><p>Academic progress, doubts, study planning and discipline.</p></div></article>
@@ -566,6 +587,15 @@ footer ul a:hover{color:var(--red)}
         <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-fitness"/></svg></div><div><h3>Physical Fitness &amp; Personality Development</h3><p>Fitness, confidence, communication and discipline.</p></div></article>
         <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-test"/></svg></div><div><h3>Weekly Tests</h3><p>Weekly assessments to find gaps and build exam readiness.</p></div></article>
       </div>
+      <aside class="video-card rv">
+        <a class="video-thumb" id="videoLink" href="#" target="_blank" rel="noopener" style="--img:url('assets/video-thumb.webp')" aria-label="Watch the video with Col Amardeep SM (Retd) on YouTube, opens in a new tab">
+          <span class="play"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></span>
+          <span class="who"><b>COL AMARDEEP SM (RETD)</b><span>Founder &amp; Director, WEDA</span></span>
+        </a>
+        <h3>GUIDANCE FROM EXPERIENCE.<br><span style="color:var(--red)">PREPARATION WITH PURPOSE.</span></h3>
+        <p>The complete RIMC admission strategy &mdash; entrance exam and interview.</p>
+        <span class="video-label"><svg style="width:13px;height:13px" viewBox="0 0 24 24"><use href="#i-play"/></svg> Play the video</span>
+      </aside>
     </div>
   </div>
 </section>
@@ -868,6 +898,10 @@ const WEDA = {
   // Absolute logo URL shown inside the Razorpay checkout window.
   logoUrl:      "https://thewinningedge.co.in/assets/logo-mark.png",   // shown by Razorpay
 
+  // ---- Video ---------------------------------------------------
+  // RIMC admission guide. Plays on the page; nothing loads until clicked.
+  youtubeUrl:   "https://www.youtube.com/watch?v=oQ4pwrOTqo4",
+
   // ---- Social --------------------------------------------------
   youtube:   "https://www.youtube.com/@TheWinningEdgeDefence",
   instagram: "https://www.instagram.com/the_winning_edge_/",
@@ -932,6 +966,49 @@ const WEDA = {
     a.setAttribute("rel", "noopener");
   });
 
+  /* ---------- YouTube: static card until clicked, then it plays here ----------
+     Nothing from YouTube is requested until the visitor clicks, so the page
+     still loads with no player, no YouTube script and no cost. ---------- */
+  const vLink = $("#videoLink");
+  const ytId = u => { const m = String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{11})/); return m ? m[1] : null; };
+  if (vLink){
+    const id = ytId(WEDA.youtubeUrl);
+    vLink.href = id ? WEDA.youtubeUrl : "#";
+    let warmed = false;
+    const warm = ()=>{
+      if (warmed || !id) return; warmed = true;
+      ["https://www.youtube-nocookie.com","https://i.ytimg.com","https://rr1---sn-cvh7knzk.googlevideo.com","https://fonts.gstatic.com"]
+        .forEach(h=>{ const l=document.createElement("link"); l.rel="preconnect"; l.href=h; l.crossOrigin=""; document.head.appendChild(l); });
+    };
+    vLink.addEventListener("pointerenter", warm, {once:true});
+    vLink.addEventListener("touchstart", warm, {once:true, passive:true});
+    vLink.addEventListener("click", e=>{
+      e.preventDefault();
+      if (vLink.classList.contains("playing")) return;
+      if (!id){
+        const card = vLink.closest(".video-card");
+        let note = card.querySelector(".alert");
+        if(!note){ note = document.createElement("div"); note.className = "alert"; card.appendChild(note); }
+        note.className = "alert warn show";
+        note.innerHTML = "<b>Video not set yet</b>Set <code>WEDA.youtubeUrl</code> in index.html to the video you want to play here.";
+        return;
+      }
+      const spin = document.createElement("span"); spin.className = "v-load";
+      const note = document.createElement("span"); note.className = "v-note"; note.textContent = "Loading the video\u2026";
+      vLink.append(spin, note);
+      const f = document.createElement("iframe");
+      f.className = "video-frame";
+      f.addEventListener("load", ()=>{ f.classList.add("ready"); spin.remove(); note.remove(); });
+      f.src = "https://www.youtube-nocookie.com/embed/" + id +
+              "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+      f.title = "WEDA - RIMC admission strategy";
+      f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      f.allowFullscreen = true;
+      vLink.classList.add("playing");
+      vLink.appendChild(f);
+    });
+  }
+
   /* ---------- nav ---------- */
   const nav = $("#nav"), burger = $("#burger");
   addEventListener("scroll", ()=> nav.classList.toggle("scrolled", scrollY > 12), {passive:true});
@@ -972,7 +1049,7 @@ const WEDA = {
   } else rv.forEach(el=> el.classList.add("in"));
 
   /* ---------- image slots: hide the placeholder label once a real file loads ---------- */
-  $$(".shot").forEach(el=>{
+  $$(".shot, .video-thumb").forEach(el=>{
     const m = (el.getAttribute("style")||"").match(/--img:url\(['"]?(.*?)['"]?\)/);
     if(!m || !m[1]) return;
     const probe = new Image();

@@ -181,7 +181,6 @@ h2 .r{color:var(--red)}
 
 /* ---------- why + video ---------- */
 .why-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:46px;align-items:start}
-.video-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;box-shadow:var(--shadow);position:sticky;top:calc(var(--nav-h) + 20px)}
 .video-thumb{position:relative;display:block;border-radius:var(--r);overflow:hidden;aspect-ratio:16/9;background:linear-gradient(145deg,#17171b,#0c0c0e 60%,#2a0a0e);background-image:var(--img,linear-gradient(145deg,#17171b,#0c0c0e 60%,#2a0a0e));background-size:cover;background-position:center;cursor:pointer}
 .video-thumb::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(12,12,14,.72),transparent 58%);z-index:1}
 .video-thumb .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:66px;height:46px;border-radius:12px;background:var(--red);display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 10px 30px -8px rgba(225,29,46,.9);transition:transform .3s var(--ease),background .3s var(--ease)}
@@ -416,9 +415,7 @@ footer ul a:hover{color:var(--red)}
   .hero-cta{order:6}
   .hero-trust{order:7}
   .split.rev .txt{order:0}
-  .video-card{position:static}
-  .hero-shot{max-width:560px}
-}
+  }
 @media (max-width:860px){
   .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
   .grid-3{grid-template-columns:1fr}
@@ -574,8 +571,8 @@ footer ul a:hover{color:var(--red)}
       <div class="aside">// Structure &middot; Mentorship &middot; Discipline</div>
     </div>
     <p class="lede rv" style="margin:-14px 0 28px">Led by experienced faculty and defence veterans since 2019.</p>
-    <div class="why-grid">
-      <div class="grid-2 rv">
+    <div>
+      <div class="grid-3 rv">
         <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-faculty"/></svg></div><div><h3>Experienced Faculty</h3><p>Educators who know these entrance exams and what they demand.</p></div></article>
         <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-discipline"/></svg></div><div><h3>Veteran-Led Leadership</h3><p>Real military values, discipline and leadership in the classroom.</p></div></article>
         <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-mentor"/></svg></div><div><h3>Complete Mentorship</h3><p>Academic progress, doubts, study planning and discipline.</p></div></article>
@@ -583,15 +580,6 @@ footer ul a:hover{color:var(--red)}
         <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-fitness"/></svg></div><div><h3>Physical Fitness &amp; Personality Development</h3><p>Fitness, confidence, communication and discipline.</p></div></article>
         <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-test"/></svg></div><div><h3>Weekly Tests</h3><p>Weekly assessments to find gaps and build exam readiness.</p></div></article>
       </div>
-      <aside class="video-card rv">
-        <a class="video-thumb" id="videoLink" href="#" target="_blank" rel="noopener" style="--img:url('assets/video-thumb.webp')" aria-label="Watch the video with Col Amardeep SM (Retd) on YouTube, opens in a new tab">
-          <span class="play"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></span>
-          <span class="who"><b>COL AMARDEEP SM (RETD)</b><span>Founder &amp; Director, WEDA</span></span>
-        </a>
-        <h3>GUIDANCE FROM EXPERIENCE.<br><span style="color:var(--red)">PREPARATION WITH PURPOSE.</span></h3>
-        <p>The complete RMS, RIMC and Sainik School exam strategy at WEDA.</p>
-        <span class="video-label"><svg style="width:13px;height:13px" viewBox="0 0 24 24"><use href="#i-play"/></svg> Play the video</span>
-      </aside>
     </div>
   </div>
 </section>
@@ -894,10 +882,6 @@ const WEDA = {
   // Absolute logo URL shown inside the Razorpay checkout window.
   logoUrl:      "https://thewinningedge.co.in/assets/logo-mark.png",   // shown by Razorpay
 
-  // ---- Video ---------------------------------------------------
-  // Replace with the real Col Amardeep SM (Retd) video. Opens in a new tab.
-  youtubeUrl:   "https://www.youtube.com/watch?v=v-j4gvd49oA",
-
   // ---- Social --------------------------------------------------
   youtube:   "https://www.youtube.com/@TheWinningEdgeDefence",
   instagram: "https://www.instagram.com/the_winning_edge_/",
@@ -961,37 +945,6 @@ const WEDA = {
     a.setAttribute("target", "_blank");
     a.setAttribute("rel", "noopener");
   });
-
-  /* ---------- YouTube: static card until clicked, then it plays here ----------
-     Nothing from YouTube is requested until the visitor clicks, so the page
-     still loads with no player, no YouTube script and no cost. ---------- */
-  const vLink = $("#videoLink");
-  const ytId = u => { const m = String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{11})/); return m ? m[1] : null; };
-  if (vLink){
-    const id = ytId(WEDA.youtubeUrl);
-    vLink.href = id ? WEDA.youtubeUrl : "#";
-    vLink.addEventListener("click", e=>{
-      e.preventDefault();
-      if (vLink.classList.contains("playing")) return;
-      if (!id){
-        const card = vLink.closest(".video-card");
-        let note = card.querySelector(".alert");
-        if(!note){ note = document.createElement("div"); note.className = "alert"; card.appendChild(note); }
-        note.className = "alert warn show";
-        note.innerHTML = "<b>Video not set yet</b>Set <code>WEDA.youtubeUrl</code> in index.html to the video you want to play here.";
-        return;
-      }
-      const f = document.createElement("iframe");
-      f.className = "video-frame";
-      f.src = "https://www.youtube-nocookie.com/embed/" + id +
-              "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
-      f.title = "WEDA - exam strategy video";
-      f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-      f.allowFullscreen = true;
-      vLink.classList.add("playing");
-      vLink.appendChild(f);
-    });
-  }
 
   /* ---------- nav ---------- */
   const nav = $("#nav"), burger = $("#burger");

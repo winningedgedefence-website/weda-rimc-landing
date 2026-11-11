@@ -179,22 +179,8 @@ h2 .r{color:var(--red)}
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 
-/* ---------- why + video ---------- */
+/* ---------- why ---------- */
 .why-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:46px;align-items:start}
-.video-thumb{position:relative;display:block;border-radius:var(--r);overflow:hidden;aspect-ratio:16/9;background:linear-gradient(145deg,#17171b,#0c0c0e 60%,#2a0a0e);background-image:var(--img,linear-gradient(145deg,#17171b,#0c0c0e 60%,#2a0a0e));background-size:cover;background-position:center;cursor:pointer}
-.video-thumb::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(12,12,14,.72),transparent 58%);z-index:1}
-.video-thumb .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:66px;height:46px;border-radius:12px;background:var(--red);display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 10px 30px -8px rgba(225,29,46,.9);transition:transform .3s var(--ease),background .3s var(--ease)}
-.video-thumb:hover .play{transform:translate(-50%,-50%) scale(1.09);background:var(--red-hot)}
-.video-thumb .play svg{width:20px;height:20px;color:#fff;margin-left:2px}
-.video-frame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000;z-index:3}
-.video-thumb.playing::before,.video-thumb.playing .play,.video-thumb.playing .who{display:none}
-.video-thumb .dur{position:absolute;right:11px;bottom:11px;z-index:2;background:rgba(12,12,14,.82);color:#fff;font-family:var(--font-m);font-size:10.5px;letter-spacing:.08em;padding:4px 8px;border-radius:5px}
-.video-thumb .who{position:absolute;left:14px;bottom:12px;z-index:2;color:#fff}
-.video-thumb .who b{display:block;font-family:var(--font-d);font-size:15px;letter-spacing:.02em}
-.video-thumb .who span{font-family:var(--font-m);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72)}
-.video-card h3{font-size:clamp(20px,2.4vw,27px);margin:18px 0 9px;line-height:1.04}
-.video-card p{font-size:13.5px;color:var(--gry);line-height:1.55}
-.video-label{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-family:var(--font-m);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:500}
 
 /* ---------- split info (sainik / rms) ---------- */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
@@ -986,7 +972,7 @@ const WEDA = {
   } else rv.forEach(el=> el.classList.add("in"));
 
   /* ---------- image slots: hide the placeholder label once a real file loads ---------- */
-  $$(".shot, .video-thumb").forEach(el=>{
+  $$(".shot").forEach(el=>{
     const m = (el.getAttribute("style")||"").match(/--img:url\(['"]?(.*?)['"]?\)/);
     if(!m || !m[1]) return;
     const probe = new Image();

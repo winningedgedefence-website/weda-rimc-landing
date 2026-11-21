@@ -7,21 +7,28 @@ Class VIII entry.
 Sibling of the Sainik School / RMS page (`weda-sainik-rms-landing`, branch
 `sainik-rms-2026`) — same design system, same logo, same policy pages.
 
-## Two actions only
+## One destination
 
 | Button | Goes to |
 |---|---|
-| **Apply for Admission** (nav, hero, final CTA, mobile bar) | WhatsApp, pre-filled |
-| **Enquire about RIMC** (both course cards) | WhatsApp, naming written vs viva |
-| **Register Now** | the Razorpay Payment Page |
+| **Apply for Admission** (nav, hero, final CTA, mobile bar) | the CRM enquiry form |
+| **Enquire about RIMC** (both course cards) | the CRM enquiry form |
+| **Register Now** | the CRM enquiry form |
+| WhatsApp number (footer) | WhatsApp, pre-filled |
 
-No forms, no backend. Three HTML pages, one stylesheet, images.
+Every call-to-action opens the public enquiry form of the WEDA CRM
+(`https://crm.thewinningedge.co.in/form.html`), so the lead is written straight into
+the CRM. **No payment is taken on this site** — the Razorpay payment page was removed,
+and the ₹500 demo registration fee is collected off the page by the counsellor.
+
+No forms, no backend. Four HTML pages, one stylesheet, images.
 
 ## Configure
 
 Everything editable lives in the `const WEDA = { … }` block near the bottom of
-`index.html`: WhatsApp and phone numbers, the Razorpay Payment Page URL, social
-links, policy page paths and the pre-filled WhatsApp messages.
+`index.html`: WhatsApp and phone numbers, `crmFormUrl` (the one link every button
+opens), social links, policy page paths and the WhatsApp message the footer link
+pre-fills.
 
 ## Images
 

@@ -18,8 +18,8 @@ Sibling of the Sainik School / RMS page (`weda-sainik-rms-landing`, branch
 
 Every call-to-action opens the public enquiry form of the WEDA CRM
 (`https://crm.thewinningedge.co.in/form.html`), so the lead is written straight into
-the CRM. **No payment is taken on this site** — the Razorpay payment page was removed,
-and the ₹500 demo registration fee is collected off the page by the counsellor.
+the CRM. **No payment is taken on this site and no fee is shown on it.** Online payment
+was removed; a counsellor settles any fee with the parent off the page.
 
 No forms, no backend. Four HTML pages, one stylesheet, images.
 

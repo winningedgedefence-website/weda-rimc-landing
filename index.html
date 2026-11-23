@@ -587,12 +587,12 @@ footer ul a:hover{color:var(--red)}
         <article class="card ico-card"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-test"/></svg></div><div><h3>Weekly Tests</h3><p>Weekly assessments to find gaps and build exam readiness.</p></div></article>
       </div>
       <aside class="video-card rv">
-        <a class="video-thumb" id="videoLink" href="#" target="_blank" rel="noopener" style="--img:url('assets/video-thumb.webp')" aria-label="Watch the RIMC admission strategy video with Col Amardeep SM (Retd), plays on this page">
+        <a class="video-thumb" id="videoLink" href="#" target="_blank" rel="noopener" style="--img:url('assets/video-thumb.jpg')" aria-label="Play the video with Col Amardeep SM (Retd) on cracking the RIMC written exam and interview, it plays on this page">
           <span class="play"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></span>
           <span class="who"><b>COL AMARDEEP SM (RETD)</b><span>Founder &amp; Director, WEDA</span></span>
         </a>
         <h3>GUIDANCE FROM EXPERIENCE.<br><span style="color:var(--red)">PREPARATION WITH PURPOSE.</span></h3>
-        <p>The complete RIMC admission strategy &mdash; entrance exam and interview.</p>
+        <p>How to crack the RIMC written exam and the tough interview that follows it.</p>
         <span class="video-label"><svg style="width:13px;height:13px" viewBox="0 0 24 24"><use href="#i-play"/></svg> Play the video</span>
       </aside>
     </div>
@@ -893,8 +893,8 @@ const WEDA = {
   phoneDisplay: "+91 74179 20356",
 
   // ---- Video ---------------------------------------------------
-  // RIMC admission guide. Plays on the page; nothing loads until clicked.
-  youtubeUrl:   "https://www.youtube.com/watch?v=oQ4pwrOTqo4",
+  // RIMC exam and interview guide. Plays on the page; nothing loads until clicked.
+  youtubeUrl:   "https://youtu.be/OG2R39PF7-Q",
 
   // ---- Social --------------------------------------------------
   youtube:   "https://www.youtube.com/@TheWinningEdgeDefence",
@@ -994,7 +994,7 @@ const WEDA = {
       f.addEventListener("load", ()=>{ f.classList.add("ready"); spin.remove(); note.remove(); });
       f.src = "https://www.youtube-nocookie.com/embed/" + id +
               "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
-      f.title = "WEDA - RIMC admission strategy video";
+      f.title = "WEDA - cracking the RIMC written exam and interview";
       f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
       f.allowFullscreen = true;
       vLink.classList.add("playing");
@@ -1042,7 +1042,7 @@ const WEDA = {
   } else rv.forEach(el=> el.classList.add("in"));
 
   /* ---------- image slots: hide the placeholder label once a real file loads ---------- */
-  $$(".shot").forEach(el=>{
+  $$(".shot, .video-thumb").forEach(el=>{
     const m = (el.getAttribute("style")||"").match(/--img:url\(['"]?(.*?)['"]?\)/);
     if(!m || !m[1]) return;
     const probe = new Image();

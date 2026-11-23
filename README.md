@@ -36,7 +36,7 @@ pre-fills.
 |---|---|---|
 | `assets/hero-cadets.webp` | Hero | present |
 | `assets/rimc-campus.webp` | About RIMC | present — **low-resolution source (515x388)**, replace when a larger one exists |
-| `assets/video-thumb.webp` | Video thumbnail | present (from the YouTube video) |
+| `assets/video-thumb.jpg` | Video thumbnail | present (the YouTube frame for the RIMC exam and interview video) |
 
 Drop a file in and it appears; no code change needed.
 
